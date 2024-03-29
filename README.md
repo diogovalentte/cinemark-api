@@ -4,6 +4,22 @@ A very simple and limited API for the Cinemark site using web scraping.
 
 # How to run:
 
+## Run using Docker:
+
+1. Build the Docker image:
+
+```sh
+docker build -t cinemark-api .
+```
+
+2. Run:
+
+```sh
+docker run --name cinemark-api -p 8080:8080 cinemark-api
+```
+
+## Run manually:
+
 1. Install the dependencies:
 
 ```

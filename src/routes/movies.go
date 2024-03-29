@@ -75,14 +75,14 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
       }
 
       .movie-container {
-        width: 589px;
+        width: calc(100% - 18px);
         height: 84px;
 
         position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 15px;
+        margin-bottom: 14px;
 
         border-radius: 10px;
         border: 1px solid rgba(56, 58, 64, 1);
@@ -116,7 +116,7 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
       }
 
       .movie-name {
-        font-size: 24px;
+        font-size: 15px;
         font-weight: bold;
         color: white;
 

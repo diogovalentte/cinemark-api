@@ -69,6 +69,14 @@ func GetMoviesiFrame(c *gin.Context) {
 		}
 	}
 
+	theme := c.Query("theme")
+	if theme == "" {
+		theme = "light"
+	} else if theme != "dark" && theme != "light" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "theme must be 'dark' or 'light'"})
+		return
+	}
+
 	scraper := scraper.Scraper{}
 	movies, err := scraper.GetInTheatersMovies(city, limit)
 	if err != nil {
@@ -76,7 +84,7 @@ func GetMoviesiFrame(c *gin.Context) {
 		return
 	}
 
-	iframe, err := getMoviesiFrame(movies)
+	iframe, err := getMoviesiFrame(movies, theme)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -85,13 +93,8 @@ func GetMoviesiFrame(c *gin.Context) {
 	c.Data(http.StatusOK, "text/html", []byte(iframe))
 }
 
-func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
-	containerWidth := "1.6"
-	if len(movies) > 3 {
-		containerWidth = "18"
-	}
-
-	tmpl := template.Must(template.New("movies").Parse(strings.Replace(`
+func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
+	html := `
 <!doctype html>
 <html lang="en">
   <head>
@@ -100,13 +103,13 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
     <title>Movie Display Template</title>
     <style>
       body {
-        background-color: #f0f0f0;
+        background-color: MOVIES-CONTAINER-BACKGROUND-COLOR;
         margin: 0;
         padding: 0;
       }
 
       .movie-container {
-        width: calc(100% - MOVIE-CONTAINER-WIDTHpx);
+        width: calc(100% - MOVIES-CONTAINER-WIDTHpx);
         height: 84px;
 
         position: relative;
@@ -190,7 +193,7 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
       }
     </style>
   </head>
-  <body style="background-color: #25262b">
+  <body>
     {{range .}}
         <div class="movie-container">
           <div class="background-image"></div>
@@ -211,7 +214,23 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
     {{end}}
   </body>
 </html>
-	`, "MOVIE-CONTAINER-WIDTH", containerWidth, -1)))
+	`
+	// Set the container width based on the number of movies for better fitting with Homarr
+	containerWidth := "1.6"
+	if len(movies) > 3 {
+		containerWidth = "18"
+	}
+
+	// Homarr theme
+	containerBackgroundColor := "#ffffff"
+	if theme == "dark" {
+		containerBackgroundColor = "#25262b"
+	}
+
+	html = strings.Replace(html, "MOVIES-CONTAINER-WIDTH", containerWidth, -1)
+	html = strings.Replace(html, "MOVIES-CONTAINER-BACKGROUND-COLOR", containerBackgroundColor, -1)
+
+	tmpl := template.Must(template.New("movies").Parse(html))
 
 	var buf bytes.Buffer
 	err := tmpl.Execute(&buf, movies)

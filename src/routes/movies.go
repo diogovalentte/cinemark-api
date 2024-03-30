@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 
@@ -85,7 +86,12 @@ func GetMoviesiFrame(c *gin.Context) {
 }
 
 func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
-	tmpl := template.Must(template.New("movies").Parse(`
+	containerWidth := "1.6"
+	if len(movies) > 3 {
+		containerWidth = "18"
+	}
+
+	tmpl := template.Must(template.New("movies").Parse(strings.Replace(`
 <!doctype html>
 <html lang="en">
   <head>
@@ -100,7 +106,7 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
       }
 
       .movie-container {
-        width: calc(100% - 18px);
+        width: calc(100% - MOVIE-CONTAINER-WIDTHpx);
         height: 84px;
 
         position: relative;
@@ -205,7 +211,7 @@ func getMoviesiFrame(movies []scraper.Movie) ([]byte, error) {
     {{end}}
   </body>
 </html>
-	`))
+	`, "MOVIE-CONTAINER-WIDTH", containerWidth, -1)))
 
 	var buf bytes.Buffer
 	err := tmpl.Execute(&buf, movies)

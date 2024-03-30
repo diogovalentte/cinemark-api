@@ -3,8 +3,7 @@
 A very simple and limited API for the [Cinemark Brazil site](https://cinemark.com.br) using web scraping.
 
 This is how the iFrame is shown on the dashboard (on the right in the image below). It is made based on the Homarr app to show movies/show requests on Jellyseer/Overseer (on the left).
-![image](https://github.com/diogovalentte/cinemark-api/assets/49578155/932de66d-5c93-4747-ae02-1002b7b2cf5d)
-
+![image](https://github.com/diogovalentte/cinemark-api/assets/49578155/fe6fd2bf-f2b1-45b7-8b40-4676819042f1)
 
 # How to run:
 

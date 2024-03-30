@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"html/template"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -25,8 +26,20 @@ func GetInTheatersMovies(c *gin.Context) {
 		return
 	}
 
+	queryLimit := c.Query("limit")
+	var limit int
+	var err error
+	if queryLimit == "" {
+		limit = -1
+	} else {
+		limit, err = strconv.Atoi(queryLimit)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "limit must be a number"})
+		}
+	}
+
 	scraper := scraper.Scraper{}
-	movies, err := scraper.GetInTheatersMovies(city)
+	movies, err := scraper.GetInTheatersMovies(city, limit)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -43,8 +56,20 @@ func GetMoviesiFrame(c *gin.Context) {
 		return
 	}
 
+	queryLimit := c.Query("limit")
+	var limit int
+	var err error
+	if queryLimit == "" {
+		limit = -1
+	} else {
+		limit, err = strconv.Atoi(queryLimit)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "limit must be a number"})
+		}
+	}
+
 	scraper := scraper.Scraper{}
-	movies, err := scraper.GetInTheatersMovies(city)
+	movies, err := scraper.GetInTheatersMovies(city, limit)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  cinemark-api:
+    container_name: cinemark-api
+    build:
+      context: https://github.com/diogovalentte/cinemark-api.git
+      dockerfile: Dockerfile
+    user: 1000:1000
+    ports:
+      - 8080:8080
+    restart: on-failure

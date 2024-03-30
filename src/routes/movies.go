@@ -210,7 +210,7 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
             <a href="{{.URL}}" target="_blank" class="movie-name">{{.Title}}</a>
           </div>
           {{ if .New }}
-            <div class="new-movie-tag">New</div>
+            <div class="new-movie-tag">Estreia</div>
           {{end}}
 
         <div style="background-color: {{.AgeRatingColor}}" class="movie-age-rating">{{.AgeRating}}</div>

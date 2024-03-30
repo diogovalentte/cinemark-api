@@ -47,9 +47,11 @@ go run main.go
 - `/v1/movies/in-theaters?city=sao-paulo` returns the movies in the theaters of a city. Allow the following query arguments:
   - `city` (not optional): city to get the movies in all of the city's theaters. First, check if the Cinemark site has a page for this city, if it doesn't, it'll return the page of São Paulo by default. Go to https://cinemark.com.br/rio-de-janeiro/filmes/em-cartaz and select your city. Then grab the city name on the URL.
   - `limit` (optional): limit the number of movies returned.
+  - `theaters` (optional): filter the theaters to get the movies. You can find the filter keywords by going to your city page, like https://cinemark.com.br/sao-paulo/filmes/em-cartaz, clicking to filter by theater, and then grabbing the filters in the URL. The filter is the theaters' IDs separated by **%2C**. For example, in the URL https://cinemark.com.br/sao-paulo/filmes/em-cartaz?cinema=716%2C690%2C699 we have the IDs 716, 690, and 699. You have to pass the text `716%2C690%2C699` to the API!
 - `/v1/movies/in-theaters-iframe` returns the movies in the theaters of a city in an HTML document that can be used as an iFrame (designed to be used with [Homarr](https://github.com/ajnart/homarr)). Allow the following query arguments:
   - `city`: same as above.
   - `limit`: same as above.
+  - `theaters`: same as above.
   - `theme` (optional): "light" or "dark". It's used to match the HTML returned with the Homarr theme. Defaults to "light".
 
 # Adding to Homarr

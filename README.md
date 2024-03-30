@@ -36,9 +36,14 @@ go run main.go
 
 - `/v1/health`
 - `/v1/movies/in-theaters?city=sao-paulo` returns the movies in the theaters of a city. Allow the following query arguments:
-  - `city` (not optional): city to get the movies in all of the city's theaters. First, check if the Cinemark site has a page for this city, if it doesn't, it'll return the page of São Paulo by default. Go to https://cinemark.com.br/rio-de-janeiro/filmes/em-cartaz and select your city.
+  - `city` (not optional): city to get the movies in all of the city's theaters. First, check if the Cinemark site has a page for this city, if it doesn't, it'll return the page of São Paulo by default. Go to https://cinemark.com.br/rio-de-janeiro/filmes/em-cartaz and select your city. Then grab the city name on the URL.
   - `limit` (optional): limit the number of movies returned.
 - `/v1/movies/in-theaters-iframe` returns the movies in the theaters of a city in an HTML document that can be used as an iFrame (designed to be used with [Homarr](https://github.com/ajnart/homarr)). Allow the following query arguments:
-  - `city` (not optional): city to get the movies in all of the city's theaters. First, check if the Cinemark site has a page for this city, if it doesn't, it'll return the page of São Paulo by default. Go to https://cinemark.com.br/rio-de-janeiro/filmes/em-cartaz and select your city.
+  - `city` (not optional): city to get the movies in all of the city's theaters. First, check if the Cinemark site has a page for this city, if it doesn't, it'll return the page of São Paulo by default. Go to https://cinemark.com.br/rio-de-janeiro/filmes/em-cartaz and select your city. Then grab the city name on the URL.
   - `limit` (optional): limit the number of movies returned.
   - `theme` (optional): "light" or "dark". It's used to match the HTML returned with the Homarr theme. Defaults to "light".
+ 
+# Adding to Homarr
+1. Click on "Enter edit mode" -> "Add a tile" -> "Widgets" -> "iFrame".
+2. Click to edit the iFrame widget.
+3. Add the API URL, like `http://192.168.1.15:8080/v1/movies/in-theaters-iframe?city=rio-de-janeiro&limit=3&theme=dark`. Change the query arguments for your needs.

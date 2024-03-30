@@ -22,18 +22,23 @@ docker run --name cinemark-api -p 8080:8080 cinemark-api
 
 1. Install the dependencies:
 
-```
+```sh
 go mod download
 ```
 
 2. Run:
 
-```
+```sh
 go run main.go
 ```
 
-# Important routes:
+# Simple docs:
 
 - `/v1/health`
-- `/v1/movies/in-theaters?city=name` returns the movies in the theaters of a city.
-- `/v1/movies/in-theaters-iframe?city=name` returns the movies in the theaters of a city in an HTML document that can be used as an iFrame (designed to be used with [Homarr](https://github.com/ajnart/homarr)).
+- `/v1/movies/in-theaters?city=name` returns the movies in the theaters of a city. Allow the following query arguments:
+  - `city` (not optional): city to get the movies in all of the city's theaters.
+  - `limit` (optional): limit the number of movies returned.
+- `/v1/movies/in-theaters-iframe` returns the movies in the theaters of a city in an HTML document that can be used as an iFrame (designed to be used with [Homarr](https://github.com/ajnart/homarr)). Allow the following query arguments:
+  - `city` (not optional): city to get the movies in all of the city's theaters.
+  - `limit` (optional): limit the number of movies returned.
+  - `theme` (optional): "light" or "dark". It's used to match the HTML returned with the Homarr theme. Defaults to "light".

@@ -57,3 +57,6 @@ go run main.go
 1. Click on "Enter edit mode" -> "Add a tile" -> "Widgets" -> "iFrame".
 2. Click to edit the iFrame widget.
 3. Add the API URL, like `http://192.168.1.15:8080/v1/movies/in-theaters-iframe?city=rio-de-janeiro&limit=3&theme=dark`. Change the query arguments for your needs.
+
+# Obs:
+- The Cinemark site stores your city in a geolocation cookie, if you change the city anytime on the site, you change this cookie’s value. The default value of the cookie is the city of São Paulo, it's set the first time you access the site. If you change the city anytime, it’ll change the value of this cookie, then the next time you access a link to the site, it’ll use this cookie’s value and show your city.

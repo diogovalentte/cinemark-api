@@ -10,13 +10,16 @@ import (
 // GetInTheatersMovies returns in theater movies (current movies playing on the theater) for a specific city
 // If the cinemark site doesn't have a page for the city, it will return the page of São Paulo instead of
 // 404, so it's better to check if the city is valid before calling this function
-func (s *Scraper) GetInTheatersMovies(city string, limit int) ([]Movie, error) {
+func (s *Scraper) GetInTheatersMovies(city string, limit int, theaters string) ([]Movie, error) {
 	var sharedErr error
 	var movies []Movie
 	var err error
 	nextPage := true
 
 	url := fmt.Sprintf("%s/%s/filmes/em-cartaz", siteURL, city)
+	if theaters != "" {
+		url = fmt.Sprintf("%s?cinema=%s", url, theaters)
+	}
 	count := 0
 	for nextPage {
 		s.resetCollector()

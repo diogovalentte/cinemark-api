@@ -39,8 +39,10 @@ func GetInTheatersMovies(c *gin.Context) {
 		}
 	}
 
+	theaters := c.Query("theaters")
+
 	scraper := scraper.Scraper{}
-	movies, err := scraper.GetInTheatersMovies(city, limit)
+	movies, err := scraper.GetInTheatersMovies(city, limit, theaters)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -69,6 +71,8 @@ func GetMoviesiFrame(c *gin.Context) {
 		}
 	}
 
+	theaters := c.Query("theaters")
+
 	theme := c.Query("theme")
 	if theme == "" {
 		theme = "light"
@@ -78,7 +82,7 @@ func GetMoviesiFrame(c *gin.Context) {
 	}
 
 	scraper := scraper.Scraper{}
-	movies, err := scraper.GetInTheatersMovies(city, limit)
+	movies, err := scraper.GetInTheatersMovies(city, limit, theaters)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

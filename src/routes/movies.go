@@ -195,6 +195,23 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
         font-weight: 800;
         text-align: center;
       }
+
+      ::-webkit-scrollbar {
+        width: 7px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: SCROLLBAR-THUMB-BACKGROUND-COLOR;
+        border-radius: 2.3px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      ::-webkit-scrollbar-track:hover {
+        background-color: SCROLLBAR-TRACK-BACKGROUND-COLOR;
+      }
     </style>
   </head>
   <body>
@@ -222,17 +239,23 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
 	// Set the container width based on the number of movies for better fitting with Homarr
 	containerWidth := "1.6"
 	if len(movies) > 3 {
-		containerWidth = "18"
+		containerWidth = "8"
 	}
 
 	// Homarr theme
 	containerBackgroundColor := "#ffffff"
+	scrollbarThumbBackgroundColor := "rgba(209, 219, 227, 1)"
+	scrollbarTrackBackgroundColor := "#ffffff"
 	if theme == "dark" {
 		containerBackgroundColor = "#25262b"
+		scrollbarThumbBackgroundColor = "#484d64"
+		scrollbarTrackBackgroundColor = "rgba(37, 40, 53, 1)"
 	}
 
 	html = strings.Replace(html, "MOVIES-CONTAINER-WIDTH", containerWidth, -1)
 	html = strings.Replace(html, "MOVIES-CONTAINER-BACKGROUND-COLOR", containerBackgroundColor, -1)
+	html = strings.Replace(html, "SCROLLBAR-THUMB-BACKGROUND-COLOR", scrollbarThumbBackgroundColor, -1)
+	html = strings.Replace(html, "SCROLLBAR-TRACK-BACKGROUND-COLOR", scrollbarTrackBackgroundColor, -1)
 
 	tmpl := template.Must(template.New("movies").Parse(html))
 

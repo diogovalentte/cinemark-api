@@ -167,7 +167,7 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
 
       .new-movie-tag {
         display: inline-block;
-        padding: 5px 10px;
+        padding: 8px 10px;
         margin: 20px;
         background-color: rgb(150, 109, 109, 0.5);
         color: rgb(230, 101, 101);

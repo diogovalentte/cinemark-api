@@ -12,6 +12,6 @@ type Movie struct {
 	AgeRating string
 	// AgeRatingColor is the color for the movie rating
 	AgeRatingColor string
-	// New is a boolean that indicates if the movie is new
-	New bool
+	// Label can be something like: Estreia, Pré-venda, etc.
+	Label string
 }

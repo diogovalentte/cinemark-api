@@ -39,9 +39,9 @@ func (s *Scraper) GetInTheatersMovies(city string, limit int, theaters string) (
 			movie.AgeRating = e.ChildText("article > div > div.movie-details > div.movie-rating > span.rating-abbr")
 			movie.AgeRatingColor = getMovieAgeRatingColor(movie.AgeRating)
 
-			newMovie := e.ChildText("article > div > span.movie-label")
-			if newMovie == "Estreia" {
-				movie.New = true
+			movieLabel := e.ChildText("article > div > span.movie-label")
+			if movieLabel != "" {
+				movie.Label = movieLabel
 			}
 
 			movies = append(movies, movie)

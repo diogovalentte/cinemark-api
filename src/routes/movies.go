@@ -165,6 +165,10 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
         text-overflow: ellipsis;
       }
 
+      .movie-name:hover {
+        text-decoration: underline;
+      }
+
       .movie-label {
         display: inline-block;
         padding: 8px 10px;
@@ -217,20 +221,25 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
   <body>
     {{range .}}
         <div class="movie-container">
+
           <div class="background-image"></div>
+
           <img
             class="movie-cover"
             src="{{ .CoverImgURL }}"
             alt="Movie Cover"
           />
+
           <div class="movie-details">
             <a href="{{ .URL }}" target="_blank" class="movie-name">{{.Title}}</a>
           </div>
+
           {{ if .Label }}
             <div class="movie-label">{{ .Label }}</div>
           {{end}}
 
-        <div style="background-color: {{.AgeRatingColor}}" class="movie-age-rating">{{.AgeRating}}</div>
+          <div style="background-color: {{.AgeRatingColor}}" class="movie-age-rating">{{.AgeRating}}</div>
+
         </div>
     {{end}}
   </body>

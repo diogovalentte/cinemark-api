@@ -186,7 +186,7 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
         .movie-name {
             font-size: 15px;
             color: white;
-            font-family: -apple-system, BmovieMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
             text-decoration: none;
         }
 
@@ -204,7 +204,7 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
 
         .info-label {
             text-decoration: none;
-            font-family: ui-sans-serif, system-ui, -apple-system, BmovieMacSystemFont,
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
               Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
               Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
             font-feature-settings: normal;
@@ -229,7 +229,7 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
             text-decoration: none; /* Remove underline */
             border-radius: 5px;
             font-size: 20px;
-            font-family: -apple-system, BmovieMacSystemFont, "Segoe UI", Roboto,
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
               Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
         }
 
@@ -243,7 +243,7 @@ func getMoviesiFrame(movies []scraper.Movie, theme string) ([]byte, error) {
             box-sizing: border-box;
 
             font-size: 20px;
-            font-family: -apple-system, BmovieMacSystemFont, "Segoe UI", Roboto,
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
               Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
             color: white;
             font-weight: 800;
